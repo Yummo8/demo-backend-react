@@ -60,6 +60,18 @@ class PostController {
     }
   }
 
+  async likePost(req, res, next) {
+    try {
+      const postId = req.params.postId;
+      const id = req.user.id;
+      console.log(id);
+      const likePost = await postService.likePost(postId, id);
+      return res.json(likePost);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async uploadImage(req, res) {
     res.json({ url: `/uploads/${req.file.originalname}` });
   }

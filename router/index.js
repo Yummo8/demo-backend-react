@@ -22,11 +22,12 @@ router.get("/users", authMiddleware, userController.getAllUsers);
 router.get("/users/:id", authMiddleware, userController.getOneUser);
 
 router.post("/posts", authMiddleware, validPost, postController.createPost);
-router.post("/uploads", authMiddleware, uploadMiddleware.single("image"), postController.uploadImage);
 router.get("/posts", authMiddleware, postController.getAllPosts);
 router.get("/posts/:id", authMiddleware, postController.getOnePost);
 router.delete("/posts/:id", authMiddleware, postController.deletePost);
 router.patch("/posts/:id", authMiddleware, postController.updatePost);
+router.post("/uploads", authMiddleware, uploadMiddleware.single("image"), postController.uploadImage);
+router.put("/like/:postId", authMiddleware, postController.likePost);
 
 router.get("/comments", authMiddleware, commentController.getAllComments);
 router.post("/comments/:id", authMiddleware, validComment, commentController.createComment);

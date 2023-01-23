@@ -8,7 +8,7 @@ const PostSchema = new Schema(
     imageUrl: { type: String },
     comment: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
     viewCount: { type: Number, default: 0 },
-    likeCount: { type: Number, default: 0 },
+    likeCount: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
 );

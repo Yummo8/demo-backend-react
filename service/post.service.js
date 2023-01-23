@@ -66,6 +66,14 @@ class PostService {
     return post;
   }
 
+  async likePost(postId, id) {
+    const like = await PostModel.findByIdAndUpdate(postId, {
+      $push: { likeCount: id },
+    });
+    console.log(like);
+    return like;
+  }
+
   async getAllPosts() {
     const posts = await PostModel.find().sort("-createdAt");
 
