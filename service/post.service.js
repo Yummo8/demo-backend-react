@@ -8,6 +8,7 @@ const ApiError = require("../exceptions/api.error");
 class PostService {
   async createPost(title, text, id, imageUrl) {
     const post = await PostModel.create({ title, text, user: id, imageUrl });
+
     await UserModel.findByIdAndUpdate(id, {
       $push: { post: post },
     });
@@ -50,16 +51,13 @@ class PostService {
 
   async getOnePost(postId) {
     const post = await PostModel.findOneAndUpdate(
-      {
-        _id: postId,
-      },
-      {
-        $inc: { viewCount: 1 },
-      },
-      {
-        returnDocument: "after",
-      }
+      { _id: postId },
+
+      { $inc: { viewCount: 1 } },
+
+      { returnDocument: "after" }
     );
+
     if (!post) {
       throw ApiError.BadRequest("Not found post");
     }

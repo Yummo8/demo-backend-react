@@ -13,6 +13,7 @@ const ApiError = require("../exceptions/api.error");
 class UserService {
   async registration(username, email, password, avatarUrl, post) {
     const userEmail = await UserModel.findOne({ email });
+
     if (userEmail) {
       throw ApiError.BadRequest(`Email ${email} already exists`);
     }
@@ -40,6 +41,7 @@ class UserService {
 
   async activate(activationLink) {
     const user = await UserModel.findOne({ activationLink });
+
     if (!user) {
       throw ApiError.BadRequest("Incorrect link activated");
     }
@@ -49,6 +51,7 @@ class UserService {
 
   async login(username, password) {
     const user = await UserModel.findOne({ username });
+
     if (!user) {
       throw ApiError.BadRequest(`User ${username} not found`);
     }
