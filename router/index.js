@@ -21,7 +21,7 @@ router.get("/refresh", userController.refresh);
 router.get("/users", authMiddleware, userController.getAllUsers);
 router.get("/users/:id", authMiddleware, userController.getOneUser);
 
-router.post("/posts", authMiddleware, validPost, postController.createPost);
+router.post("/create-post", authMiddleware, validPost, postController.createPost);
 router.get("/posts", authMiddleware, postController.getAllPosts);
 router.get("/posts/:id", authMiddleware, postController.getOnePost);
 router.delete("/posts/:id", authMiddleware, postController.deletePost);
