@@ -73,7 +73,7 @@ class PostService {
   }
 
   async getAllPosts() {
-    const posts = await PostModel.find().sort("-createdAt");
+    const posts = await PostModel.find().sort("-createdAt").populate("user").exec();
 
     return posts;
   }
