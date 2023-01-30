@@ -56,7 +56,9 @@ class PostService {
       { $inc: { viewCount: 1 } },
 
       { returnDocument: "after" }
-    );
+    )
+      .populate("user")
+      .exec();
 
     if (!post) {
       throw ApiError.BadRequest("Not found post");
