@@ -60,6 +60,16 @@ class PostController {
     }
   }
 
+  async getMyPosts(req, res, next) {
+    try {
+      const id = req.user.id;
+      const posts = await postService.getMyPosts(id);
+      return res.json(posts);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async likePost(req, res, next) {
     try {
       const postId = req.params.postId;

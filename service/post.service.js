@@ -79,6 +79,16 @@ class PostService {
 
     return posts;
   }
+
+  async getMyPosts(id) {
+    const user = await UserModel.findById(id);
+    const userPosts = await Promise.all(
+      user.post.map((post) => {
+        return PostModel.findById(post._id);
+      })
+    );
+    return userPosts;
+  }
 }
 
 module.exports = new PostService();
