@@ -50,7 +50,7 @@ class PostService {
   }
 
   async getOnePost(postId) {
-    const post = await PostModel.findOneAndUpdate(
+    const post = await PostModel.findByIdAndUpdate(
       { _id: postId },
 
       { $inc: { viewCount: 1 } },
