@@ -83,7 +83,7 @@ class PostController {
   }
 
   async uploadImage(req, res) {
-    res.json({ url: `/uploads/${req.file}` });
+    res.json({ url: `/uploads/${req.file.originalname}` });
   }
 }
 
