@@ -27,7 +27,7 @@ router.get("/posts", authMiddleware, postController.getAllPosts);
 router.get("/posts/:id", authMiddleware, postController.getOnePost);
 router.delete("/posts/:id", authMiddleware, postController.deletePost);
 router.patch("/posts/:id", authMiddleware, postController.updatePost);
-router.post("/uploads", authMiddleware, uploadMiddleware.single("image"), postController.uploadImage);
+router.post("/uploads", uploadMiddleware.single("image"), postController.uploadImage);
 router.put("/like/:postId", authMiddleware, postController.likePost);
 
 router.get("/comments", authMiddleware, commentController.getAllComments);
