@@ -6,8 +6,8 @@ const CommentDto = require("../dtos/comment.dto");
 const ApiError = require("../exceptions/api.error");
 
 class CommentService {
-  async createComment(text, username, postId, id) {
-    const comment = await CommentModel.create({ text, post: postId, user: username, user: id });
+  async createComment(text, postId, id) {
+    const comment = await CommentModel.create({ text, post: postId, user: id });
 
     await PostModel.findByIdAndUpdate(postId, {
       $push: { comment: comment },
@@ -35,7 +35,7 @@ class CommentService {
   }
 
   async getAllComments() {
-    const comment = await CommentModel.find();
+    const comment = await CommentModel.find().populate("user").exec();
 
     return comment;
   }
