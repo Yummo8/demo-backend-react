@@ -12,8 +12,8 @@ class CommentController {
     try {
       const { text } = req.body;
       const postId = req.params.id;
-      const { username, id } = req.user;
-      const comment = await commentService.createComment(text, username, postId, id);
+      const { id } = req.user;
+      const comment = await commentService.createComment(text, postId, id);
       return res.json(comment);
     } catch (error) {
       next(error);
