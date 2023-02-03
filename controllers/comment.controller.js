@@ -32,6 +32,16 @@ class CommentController {
     }
   }
 
+  async getCommentsOfPost(req, res, next) {
+    try {
+      const postId = req.params.id;
+      const comment = await commentService.getCommentsOfPost(postId);
+      return res.json(comment);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async getAllComments(req, res, next) {
     try {
       const comments = await commentService.getAllComments();
