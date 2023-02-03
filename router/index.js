@@ -31,7 +31,7 @@ router.post("/uploads", uploadMiddleware.single("image"), postController.uploadI
 router.put("/like/:postId", authMiddleware, postController.likePost);
 
 router.get("/comments", authMiddleware, commentController.getAllComments);
-router.post("/comments/:postId", authMiddleware, validComment, commentController.createComment);
+router.post("/comments/:id", authMiddleware, validComment, commentController.createComment);
 router.delete("/comments/:postId/:commentId", authMiddleware, commentController.deleteComment);
 
 module.exports = router;
