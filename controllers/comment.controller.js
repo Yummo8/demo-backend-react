@@ -22,10 +22,9 @@ class CommentController {
 
   async deleteComment(req, res, next) {
     try {
-      const postId = req.params.postId;
-      const commentId = req.params.commentId;
-      const id = req.user;
-      const comment = await commentService.deleteComment(commentId, postId, id);
+      const commentId = req.params.id;
+      const id = req.body.post.id;
+      const comment = await commentService.deleteComment(commentId, id);
       return res.json(comment);
     } catch (error) {
       next(error);

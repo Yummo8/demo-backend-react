@@ -19,13 +19,12 @@ class CommentService {
     };
   }
 
-  async deleteComment(commentId, postId, id) {
+  async deleteComment(commentId, id) {
     const comment = await CommentModel.findByIdAndDelete(commentId);
 
-    await PostModel.findByIdAndUpdate(postId, {
+    await PostModel.findByIdAndUpdate(id, {
       $pull: { comment: commentId },
     });
-    console.log(id);
 
     if (!comment) {
       throw ApiError.BadRequest("Not found comment");
