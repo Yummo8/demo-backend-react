@@ -79,7 +79,7 @@ class PostService {
 
     return posts;
   }
-  w;
+
   async getMyPosts(id) {
     const user = await UserModel.findById(id);
     const userPosts = await Promise.all(
