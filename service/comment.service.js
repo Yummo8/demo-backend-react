@@ -34,6 +34,16 @@ class CommentService {
     return comment;
   }
 
+  async getCommentsOfPost(postId) {
+    const post = await PostModel.findById(postId);
+    const commentsPost = await Promise.all(
+      post.comment.map((comment) => {
+        return CommentModel.findById(comment._id).populate("user").exec();
+      })
+    );
+    return commentsPost;
+  }
+
   async getAllComments() {
     const comment = await CommentModel.find().populate("user").exec();
 
