@@ -19,10 +19,10 @@ class CommentService {
     };
   }
 
-  async deleteComment(commentId, id) {
+  async deleteComment(commentId, postId) {
     const comment = await CommentModel.findByIdAndDelete(commentId);
 
-    await PostModel.findByIdAndUpdate(id, {
+    await PostModel.findByIdAndUpdate(postId, {
       $pull: { comment: commentId },
     });
 

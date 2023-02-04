@@ -33,6 +33,6 @@ router.put("/like/:postId", authMiddleware, postController.likePost);
 router.get("/comments", authMiddleware, commentController.getAllComments);
 router.get("/comments/:id", authMiddleware, commentController.getCommentsOfPost);
 router.post("/comments/:id", authMiddleware, validComment, commentController.createComment);
-router.delete("/comments/:id", authMiddleware, commentController.deleteComment);
+router.delete("/posts/:postId/:commentId", authMiddleware, commentController.deleteComment);
 
 module.exports = router;
